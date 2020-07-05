@@ -26,6 +26,12 @@ export const Header = styled.header`
     display: flex;
     justify-content: center;
     margin-top: 23px;
+    div{
+        display:flex;
+        background: #FFFF;
+        border-radius: 100px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    }
 `;
 
 export const Content = styled.div`
@@ -58,19 +64,6 @@ export const Content = styled.div`
        font-weight: 700;
         font-size: 32px;
         margin-bottom: 1px;
-    }
-    
-    button{
-        width: 338px;
-        height: 38px;
-        background: "#F4F7FC";
-        border-radius: 100px;
-        border: 0;
-        font-size: 22px;
-        color: #4A507B;
-        font-family: 'Lato',sans-serif;
-        font-weight: 700 ;
-        margin-bottom: 32px;    
     }
 
     div{

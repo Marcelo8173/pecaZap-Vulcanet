@@ -68,14 +68,12 @@ const Footer: React.FC<IProps> = ({dataToSend,seletecMouhtOrYear}) =>{
 
         const total = pricesT +  (counter * costT);
         return total;
-    },[counter,attendant.cost, dataToSend])
+    },[counter,attendant.cost, dataToSend,seletecMouhtOrYear])
 
     return(
         <Container>
             <FooterHeader>
-                {console.log(seletecMouhtOrYear)}
                 <section>
-                    {console.log(dataToSend.prices.monthly)}
                     <h1>Atendentes</h1>
                     <p>+R$130/mês por atendente</p>
                 </section>

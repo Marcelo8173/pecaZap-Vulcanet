@@ -33,7 +33,7 @@ const Dashboard: React.FC = () =>{
 
     const [selectedYear, setSelectedYear] = useState(false);
     const [selectedMonth, setSelectedMonth] = useState(true);
-    const [selectButtonId, setSelectButtonId] = useState<number>(2);
+    const [dataName,setDataName] = useState('Plano 2.0');
     const [datas,setDatas] = useState<PlansProps[]>([]);
 
     const [dataToSend, setDataToSend] = useState<propsDataToSend>({
@@ -57,28 +57,30 @@ const Dashboard: React.FC = () =>{
 
     const handleSelectButtonContent = useCallback((data: propsDataToSend ) => {
         setDataToSend(data);
+        setDataName(data.name);
     },[])
 
 
-    return(
+    return( 
         <Container>
             <CardContainer>
                 <Header>
-                    <ButtonHeader 
-                        onClick={handleSelectedButton} 
-                        isSelected={selectedMonth}>
-                            Mensal 
-                    </ButtonHeader>
-                    
-                    <ButtonHeader 
-                        onClick={handleSelectedButton}
-                        isSelected={selectedYear}>
-                            Anual
-                    </ButtonHeader>
+                    <div>
+                        <ButtonHeader 
+                            onClick={handleSelectedButton} 
+                            isSelected={selectedMonth}>
+                                Mensal 
+                        </ButtonHeader>
+                        
+                        <ButtonHeader 
+                            onClick={handleSelectedButton}
+                            isSelected={selectedYear}>
+                                Anual
+                        </ButtonHeader>
+                    </div>
                 </Header>
 
                 <Content>
-                    {console.log()}
                     {   datas ? 
                         datas.map(data =>(
                             <AsidesCard key={data.id}>
@@ -88,7 +90,13 @@ const Dashboard: React.FC = () =>{
                                 </section>
                                 <p>{data.description}</p>
                                 <h2>{selectedYear ? formatedValue(data.prices.yearly) : formatedValue(data.prices.monthly)}</h2>
-                                <ButtonContent isButtonSelected={selectButtonId} onClick={() => handleSelectButtonContent(data)}>SELECIONAR</ButtonContent>
+                                {data.name === dataName ? 
+                                    <ButtonContent idIsselectd={true} onClick={() => handleSelectButtonContent(data)}>Selecionar</ButtonContent>
+                                :
+                                    <ButtonContent idIsselectd={false} onClick={() => handleSelectButtonContent(data)}>Selecionar</ButtonContent>
+                                }
+                                
+                                
                                 <AsideContent>
                                     {data.features.map(fetature => (
                                         <div key={fetature} >

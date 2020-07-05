@@ -2,14 +2,15 @@ import React, { ButtonHTMLAttributes } from 'react';
 import { Container, ButtonContents} from './styles';
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-    isButtonSelected: number;
+    idIsselectd: boolean;
 };
 
-const ButtonContent:React.FC<ButtonProps> = ({children,isButtonSelected,...rest}) => {
+const ButtonContent:React.FC<ButtonProps> = ({children,idIsselectd,...rest}) => {
     return(
         <Container>
             <ButtonContents {...rest}
-            isButtonSelected={isButtonSelected}>
+                idIsselectd={idIsselectd}
+            >
                 {children}
             </ButtonContents>
         </Container>

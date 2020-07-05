@@ -1,20 +1,20 @@
 import styled from 'styled-components';
 
-interface propsButton{
-    isButtonSelected: number;
+interface buttonProps{
+        idIsselectd:boolean;
 }
 
 export const Container = styled.div``;
 
-export const ButtonContents = styled.button<propsButton>`
+export const ButtonContents = styled.button<buttonProps>`
         width: 338px;
         height: 38px;
-        background: ${(props) =>props.isButtonSelected ? "#F4F7FC" : 'red' } ;
+        color: ${(props) =>props.idIsselectd ? '#FFFF': '#4A507B'};
+        background: ${(props) => props.idIsselectd ? '#43B998':"#F4F7FC"} ;
         border-radius: 100px;
         border: 0;
         font-size: 22px;
-        color: #4A507B;
         font-family: 'Lato',sans-serif;
         font-weight: 700 ;
-        margin-bottom: 32px;    
+        margin-bottom: 32px;
 `;

@@ -6,4 +6,5 @@ export const AsideCard = styled.aside`
     padding: 5px;
     margin-right: 17px;
     margin-top: 39px;
+    
 `;
