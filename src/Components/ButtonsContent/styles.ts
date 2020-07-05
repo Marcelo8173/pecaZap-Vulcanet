@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-    button{
+interface propsButton{
+    isButtonSelected: number;
+}
+
+export const Container = styled.div``;
+
+export const ButtonContents = styled.button<propsButton>`
         width: 338px;
         height: 38px;
-        background: "#F4F7FC";
+        background: ${(props) =>props.isButtonSelected ? "#F4F7FC" : 'red' } ;
         border-radius: 100px;
         border: 0;
         font-size: 22px;
@@ -12,5 +17,4 @@ export const Container = styled.div`
         font-family: 'Lato',sans-serif;
         font-weight: 700 ;
         margin-bottom: 32px;    
-    }
 `;

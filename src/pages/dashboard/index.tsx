@@ -21,28 +21,44 @@ interface PlansProps{
     };
 }
 
+interface propsDataToSend{
+    name:string;
+    prices: {
+        monthly: number;
+        yearly: number;
+    };
+}
 
 const Dashboard: React.FC = () =>{
 
     const [selectedYear, setSelectedYear] = useState(false);
     const [selectedMonth, setSelectedMonth] = useState(true);
-    const [selectButton, setSelectButton] = useState(false);
+    const [selectButtonId, setSelectButtonId] = useState<number>(2);
     const [datas,setDatas] = useState<PlansProps[]>([]);
+
+    const [dataToSend, setDataToSend] = useState<propsDataToSend>({
+        name:'Plano 2.0',
+        prices: {
+            monthly: 250,
+            yearly: 230
+        }
+    } as propsDataToSend);
+    
+    useEffect(() => {
+        api.get('/plans').then(response =>{
+            setDatas(response.data);
+        });
+    },[]);
 
     const handleSelectedButton = useCallback(() =>{
         setSelectedYear((state) => !state);
         setSelectedMonth((state) => !state);
     },[]);
 
-    const handleSelectButtonContent = useCallback(() => {
-        setSelectButton((state) => !state);
+    const handleSelectButtonContent = useCallback((data: propsDataToSend ) => {
+        setDataToSend(data);
     },[])
 
-    useEffect(() => {
-        api.get('/plans').then(response =>{
-            setDatas(response.data);
-        });
-    },[]);
 
     return(
         <Container>
@@ -62,17 +78,17 @@ const Dashboard: React.FC = () =>{
                 </Header>
 
                 <Content>
+                    {console.log()}
                     {   datas ? 
                         datas.map(data =>(
                             <AsidesCard key={data.id}>
                                 <section>
                                     <img src={Vector} alt=""/>
-                                    <h1>{data.name }</h1>
+                                    <h1>{data.name}</h1>
                                 </section>
                                 <p>{data.description}</p>
                                 <h2>{selectedYear ? formatedValue(data.prices.yearly) : formatedValue(data.prices.monthly)}</h2>
-                                <ButtonContent onClickCapture={handleSelectButtonContent}>SELECIONAR</ButtonContent>
-    
+                                <ButtonContent isButtonSelected={selectButtonId} onClick={() => handleSelectButtonContent(data)}>SELECIONAR</ButtonContent>
                                 <AsideContent>
                                     {data.features.map(fetature => (
                                         <div key={fetature} >
@@ -85,7 +101,13 @@ const Dashboard: React.FC = () =>{
                         )): <div>Erro</div>
                     }                   
                 </Content>
-                <Footer />
+                
+                <Footer 
+                    seletecMouhtOrYear={selectedYear}
+                    dataToSend={dataToSend}
+                    handleSendData={handleSelectButtonContent} 
+                />          
+                
             </CardContainer>
         </Container>
     );
