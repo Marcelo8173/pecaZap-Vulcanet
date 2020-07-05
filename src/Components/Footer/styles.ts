@@ -66,6 +66,13 @@ export const FoterContent = styled.div`
         font-weight: bold;
         font-size: 26px;
         margin-right: 26px;
+        transition: all;
+        transition-duration: 0.5s;
+
+        &:hover{
+            width: 242px;
+            background: #3BA386;
+        }
     }
 `;
 

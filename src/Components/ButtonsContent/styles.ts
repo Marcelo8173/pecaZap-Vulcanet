@@ -13,6 +13,7 @@ export const ButtonContents = styled.button<buttonProps>`
         background: ${(props) => props.idIsselectd ? '#43B998':"#F4F7FC"} ;
         border-radius: 100px;
         border: 0;
+        transition: 0.5s;
         font-size: 22px;
         font-family: 'Lato',sans-serif;
         font-weight: 700 ;

@@ -25,6 +25,7 @@ const ToastPropsType ={
 export const Container = styled(animated.div)<ToastProps>`
     margin-top: 250px;
     width: 360px;
+    height: 100px;
     position: relative;
     padding: 16px 30px 16px 16px;
     border-radius: 10px;
